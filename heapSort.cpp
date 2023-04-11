@@ -1,11 +1,14 @@
 #include<bits/stdc++.h>
 using namespace std;
+//Function for Swapping
 void swap(int* a, int* b)
 {
     int temp = *a;
     *a = *b;
     *b = temp;
 }
+
+//Function for maintaining maxHeap
 void heapify(int* arr,int size,int index)
 {
     int largest = index;
@@ -27,7 +30,7 @@ void heapify(int* arr,int size,int index)
         heapify(arr,size,largest);
     }
 }
-
+// Function to make heap out of array
 void makeHeap(int* arr,int size)
 {
     for(int i = floor(size/2)-1;i >= 0;i--)
@@ -35,7 +38,7 @@ void makeHeap(int* arr,int size)
         heapify(arr,size,i);
     }
 }
-
+//Function to sort array using heap sort
 void heapSort(int* arr,int size)
 {
     makeHeap(arr,size);
@@ -68,7 +71,7 @@ int main()
     printArray(arr,size);
 
     heapSort(arr,size);
-     
+
     cout << " \nArray After Sorting : "; 
     printArray(arr,size);
     
