@@ -2,45 +2,47 @@
 using namespace std;
 
 //Function for partitioning array.
-int partition(vector<int>& nums,int left,int right)
+int partition(vector<int>& nums,int start,int end)
 {
-    int index = left-1;
-    int pivot = right;
-    for(int i = left;i<right;i++)
+    int index = start - 1;
+    int pivot = end;
+
+    for(int i = start;i<end;i++)
     {
-        if(nums[pivot] > nums[i])
+        if(nums[pivot] < nums[i])
         {
             index++;
-            swap(nums[index],nums[i]);
+            swap(nums[i],nums[index]);
         }
     }
     swap(nums[index+1],nums[pivot]);
-    return(index+1);
+    return (index+1);
 }
 
-//Function to find kth minimum in an array
-int kthMin(vector<int>& nums,int left,int right,int k)
+//Function to find kth maximum in an array
+int kthMax(vector<int>& nums,int start,int end,int k)
 {
     //If size of array is 1 or after partition only 1 element remains in the array
-    if(left == right)
+    if(start == end )
     {
-        return nums[left];
+        return nums[start];
     }
     //Calling function to find pivot index
-    int part = partition(nums,left,right);
+    int part = partition(nums,start,end);
     //If partition index contains kth maximum element
     if(part == k-1)
     {
         return nums[part];
     }
     //else if kth maximum element is present on the right of the partition
-    else if(part > k-1)
+    else if(part < k-1)
     {
-        return kthMin(nums,left,part-1,k);
+        return kthMax(nums,part+1,end,k);
     }
     //else kth maximum element is present on the left of the partition
     else
-    return kthMin(nums,part+1,right,k);
+        return kthMax(nums,start,part-1,k);
+
 }
 
 int main()
@@ -55,8 +57,8 @@ int main()
         cin >> nums[i];
     }
     int k;
-    cout << "\nEnter the value of k for finding kth minimum : ";
+    cout << "\nEnter the value of k for finding kth maximum : ";
     cin >> k;
-    cout << "\nAnswer : " << kthMin(nums,0,size-1,k);
+    cout << "\nAnswer : " << kthMax(nums,0,size-1,k);
     return 0;
 }
