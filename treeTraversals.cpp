@@ -11,7 +11,7 @@ class Node
     {
         this->data = data;
         this->left = NULL;
-        this->left = NULL;
+        this->right = NULL;
     }
     
 };
@@ -84,6 +84,8 @@ int main()
 {
     TreeBuild obj;
     Node* root = obj.buildTree();
+
+    
     cout <<"\nRoot -> " << root->data;
     cout << "\nPreorder Traversal : ";
     obj.preorderTraversal(root);
