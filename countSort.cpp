@@ -1,6 +1,7 @@
 /*
-    Implementation of counting sort.
+    Program : Count Sort
 */
+
 
 #include<bits/stdc++.h>
 using namespace std;

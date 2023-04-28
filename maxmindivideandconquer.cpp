@@ -1,3 +1,6 @@
+/*
+    Program : Minimum and Maximum inside an array using divide and conquer
+*/
 #include<bits/stdc++.h>
 using namespace std;
 

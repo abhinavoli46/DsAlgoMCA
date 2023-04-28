@@ -1,3 +1,6 @@
+/*
+    Program : Quick Sort
+*/
 #include<bits/stdc++.h>
 using namespace std;
 int lpartition(int* arr,int l,int h)

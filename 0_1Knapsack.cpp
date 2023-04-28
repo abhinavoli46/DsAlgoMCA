@@ -1,13 +1,17 @@
+/*
+    Program : 0-1 Knapsack
+*/
+
 #include<bits/stdc++.h>
 using namespace std;
 int t[101][1001];
-int knapsack(int Wt[],int cost[],int n,int W)
+int knapsack(int Wt[],int cost[],int n,int capacity)
 {
     //i represent current value of no of items availables
-    //j represent maximum weight of bag to work on in the current moment 
-    for(int i = 1;i < n+1;i++)
+    //j represent maximum weight of bag to work on in the current moment
+    for(int i = 1;i <n+1;i++)
     {
-        for(int j = 1;j < W+1;j++)
+        for(int j = 1;j < capacity+1 ;j++)
         {
             //If current bag weight is greater than the weight of current ith element we are working on.
             if(j >= Wt[i-1])
@@ -22,7 +26,7 @@ int knapsack(int Wt[],int cost[],int n,int W)
         }
     }
 
-    return t[n][W];
+    return t[n][capacity];
 }
 int main()
 {
@@ -37,9 +41,20 @@ int main()
             }
         }
     }
-    int Wt[] = {2,1,4,5,6};
-    int val[] = {40,25,20,60,45};
-
-    cout << knapsack(Wt,val,5,7);
+    int n,capacity;
+    cout << "\nEnter the number of items : ";
+    cin >> n;
+    int Wt[n],val[n];
+    for(int i = 0;i<n;i++)
+    {
+        cout << "\nEnter Weight of item " << i+1 << " : ";
+        cin >> Wt[i];
+        cout << "\nEnter Value of item " << i+1 << " : ";
+        cin >> val[i];
+    }
+    cout << "\nEnter Capacity of Knapsack : ";
+    cin >> capacity;
+    
+    cout << knapsack(Wt,val,n,capacity);
     return 0;
 }

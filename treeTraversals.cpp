@@ -1,3 +1,6 @@
+/*
+    Program : Tree Traversals : Inorder, Preorder, Postorder
+*/
 #include<bits/stdc++.h>
 using namespace std;
 class Node
@@ -85,7 +88,7 @@ int main()
     TreeBuild obj;
     Node* root = obj.buildTree();
 
-    
+
     cout <<"\nRoot -> " << root->data;
     cout << "\nPreorder Traversal : ";
     obj.preorderTraversal(root);

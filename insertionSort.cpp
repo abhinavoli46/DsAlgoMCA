@@ -1,5 +1,5 @@
 /*
-    ->Program for Insertion Sort
+    Program : Insertion Sort
 */
 
 #include<iostream>
