@@ -43,7 +43,7 @@ int kthMin(vector<int>& nums,int left,int right,int k)
     }
     //else kth maximum element is present on the left of the partition
     else
-    return kthMin(nums,part+1,right,k);
+    return kthMin(nums,part+1,right,part - k);
 }
 
 int main()
