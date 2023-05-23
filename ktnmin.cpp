@@ -31,19 +31,20 @@ int kthMin(vector<int>& nums,int left,int right,int k)
     }
     //Calling function to find pivot index
     int part = partition(nums,left,right);
+    int elements = part - left + 1;
     //If partition index contains kth maximum element
-    if(part == k-1)
+    if(elements == k)
     {
         return nums[part];
     }
     //else if kth maximum element is present on the right of the partition
-    else if(part > k-1)
+    else if(k < elements)
     {
         return kthMin(nums,left,part-1,k);
     }
     //else kth maximum element is present on the left of the partition
     else
-    return kthMin(nums,part+1,right,part - k);
+    return kthMin(nums,part+1,right,k - elements);
 }
 
 int main()
