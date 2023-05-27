@@ -1,5 +1,5 @@
 #include<bits/stdc++.h>
-using namespace std;
+using namespace std; 
 //Structure of Node
 struct Node
 {
@@ -99,8 +99,6 @@ void buildHuffmanTree(string inputString)
         cout << it.first << "\t\t" << it.second << endl;
     }
 }
-
-
 
 int main()
 {   
