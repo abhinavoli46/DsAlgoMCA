@@ -63,13 +63,10 @@ int main()
         cin >> destination;
         cout << "\nEnter weight : ";
         cin >> weight;
-
-        adjList.push_back(make_pair(make_pair(source,destination),weight));
-       
-        
+        adjList.push_back(make_pair(make_pair(source,destination),weight));    //pushed node into the list {{source,destination},weight}
     }
-     int start;
-    cout << "\nEnter a source : ";
+        int start;
+        cout << "\nEnter a source : ";
         cin >> start;
 
         BellmanFord(adjList,vertices,start);
