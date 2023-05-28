@@ -5,7 +5,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-void primsAlgo(vector<vector<int>> adj[],int V,int& minCost)
+void primsAlgo(vector<pair<int,int>> adj[],int V,int& minCost)
 {
     //Make min heap of pair of a integer representing cost and pair representing source and destination.  Node in a heap will be {cost,{parent,neighbour}}
     priority_queue<pair<int,pair<int,int>>,vector<pair<int,pair<int,int>>>,greater<pair<int,pair<int,int>>>> pq;
@@ -21,8 +21,8 @@ void primsAlgo(vector<vector<int>> adj[],int V,int& minCost)
     while(!pq.empty())
     {
         int distance = pq.top().first;
-        int currNode = pq.top().second.second;
         int parentNode = pq.top().second.first;
+        int currNode = pq.top().second.second;
         pq.pop();
         //If A node is already visited do not make any changes
         if(visited[currNode] == 1) continue;
@@ -37,9 +37,9 @@ void primsAlgo(vector<vector<int>> adj[],int V,int& minCost)
         //Put neighbours of current node into the heap only if they are not visited
         for(auto x : adj[currNode])
         {
-            //See line in main where values are pushed for a particular node only destination and cost were stored in a vector and added.
-            int neighbour = x[0];
-            int cost = x[1];
+            //See line in main where values are pushed for a particular node only destination and cost were stored in a pair and added.
+            int neighbour = x.first;
+            int cost = x.second;
 
             if(visited[neighbour] == 0)
             {
@@ -64,13 +64,13 @@ int main()
     cout << "\nEnter the number of edges : ";
     cin >> n_edges;
 
-    /*Make an array of array of vector where outer vector is of source vertices and inner vector is of destination and cost between source and destination.
+    /* Make a 2d vector of pair type where pair stores {adjacentNode,cost}
      1 -> {{3,6},{4,3}}
      2 -> {{1,3}}
      3 -> {{4,2}}
      4 -> {{2,1},{4,2}}
     */
-    vector<vector<int>> adjList[n_vertices];
+    vector<pair<int,int>> adjList[n_vertices];
     //Fill the adjacency matrix for every edge (not vertex), every edge has 2 vertices and common cost
     for(int i = 0;i<n_edges;i++)
     {
@@ -81,19 +81,8 @@ int main()
         cin >> destination;
         cout << "\nEnter cost : ";
         cin >> cost;
-
-        vector<int> t1;
-        vector<int> t2;
-
-        t1.push_back(destination);
-        t1.push_back(cost);
-        adjList[source].push_back(t1);
-
-        t2.push_back(source);
-        t2.push_back(cost);
-        adjList[destination].push_back(t2);
-
-        
+        adjList[source].push_back(make_pair(destination,cost));
+        adjList[destination].push_back(make_pair(source,cost));  
     }
     primsAlgo(adjList,n_vertices,minCost);
     cout << "\nMinimum Cost : " << minCost;

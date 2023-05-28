@@ -26,6 +26,7 @@ int activitySelection(vector<int> start, vector<int> end, int n)
 
     //Put the recently executed activity in curr
     int curr = 0;
+    cout << "\n Activity " << curr+1 << " is performed.";
     for(int i = 1;i<n;i++)
     {
         //If only one activity is performed in that hour or day we will not include those cases where finishing time of previous process
@@ -35,6 +36,7 @@ int activitySelection(vector<int> start, vector<int> end, int n)
         {
             count++;
             curr = i;
+            cout << "\n Activity " << curr+1 << " is performed.";
         }
     }
     return count;
@@ -54,6 +56,7 @@ int main()
         cout << "\nEnter Ending Time : ";
         cin >> end[i];
     }
-    cout << "\nTotal Activities Performned : " << activitySelection(start, end, n);
+    int countOfActivity = activitySelection(start, end, n);
+    cout << "\nTotal Activities Performed : " << countOfActivity;
     return 0;
 }

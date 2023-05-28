@@ -37,12 +37,12 @@ int kthMin(vector<int>& nums,int left,int right,int k)
     {
         return nums[part];
     }
-    //else if kth maximum element is present on the right of the partition
+    //else if kth maximum element is present on the left of the partition
     else if(k < elements)
     {
         return kthMin(nums,left,part-1,k);
     }
-    //else kth maximum element is present on the left of the partition
+    //else kth maximum element is present on the right of the partition
     else
     return kthMin(nums,part+1,right,k - elements);
 }

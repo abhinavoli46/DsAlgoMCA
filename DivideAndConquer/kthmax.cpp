@@ -31,21 +31,23 @@ int kthMax(vector<int>& nums,int start,int end,int k)
     {
         return nums[start];
     }
+    
     //Calling function to find pivot index
     int part = partition(nums,start,end);
+    int elements = part - start + 1;
     //If partition index contains kth maximum element
-    if(part == k-1)
+    if(elements == k)
     {
         return nums[part];
     }
     //else if kth maximum element is present on the right of the partition
-    else if(part < k-1)
+    else if(elements < k)
     {
         return kthMax(nums,part+1,end,k);
     }
     //else kth maximum element is present on the left of the partition
     else
-        return kthMax(nums,start,part-1,k);
+        return kthMax(nums,start,part-1,k-elements);
 
 }
 

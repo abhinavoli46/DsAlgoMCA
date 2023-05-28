@@ -53,7 +53,7 @@ public:
         }
     }
 };
-void kruskal(vector<vector<int>> adj[],int V,int& minCost)
+void kruskal(vector<pair<int,int>> adj[],int V,int& minCost)
 {
     vector<pair<int,pair<int,int>>> edges;
     vector<pair<int,int>> mst;
@@ -61,8 +61,8 @@ void kruskal(vector<vector<int>> adj[],int V,int& minCost)
     {
         for(auto x : adj[i])
         {
-            int neighbour = x[0];
-            int cost = x[1];
+            int neighbour = x.first;
+            int cost = x.second;
             int currNode = i;
 
             edges.push_back({cost,{currNode,neighbour}});
@@ -107,7 +107,7 @@ int main()
      3 -> {{4,2}}
      4 -> {{2,1},{4,2}}
     */
-    vector<vector<int>> adjList[n_vertices];
+    vector<pair<int,int>> adjList[n_vertices];
     //Fill the adjacency matrix for every edge (not vertex), every edge has 2 vertices and common cost
     for(int i = 0;i<n_edges;i++)
     {
@@ -119,16 +119,8 @@ int main()
         cout << "\nEnter cost : ";
         cin >> cost;
 
-        vector<int> t1;
-        vector<int> t2;
-
-        t1.push_back(destination);
-        t1.push_back(cost);
-        adjList[source].push_back(t1);
-
-        t2.push_back(source);
-        t2.push_back(cost);
-        adjList[destination].push_back(t2);
+        adjList[source].push_back(make_pair(destination,cost));
+        adjList[destination].push_back(make_pair(source,cost));
 
         
     }
